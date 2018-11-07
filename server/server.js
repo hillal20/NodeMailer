@@ -1,6 +1,10 @@
 const express = require("express");
 const server = express();
 const port = process.env.PORT || 4000;
+const cors = require("cors");
+const nodemailer = require("nodemailer");
+
+server.use(cors());
 
 server.get("/", (req, res) => {
   res.send("api is running ");
