@@ -14,6 +14,14 @@ class App extends Component {
   eventHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  submitInfo = () => {
+    //alert("helloooooo");
+    const obj = {
+      name: this.state.studentName,
+      lastName: this.state.lastName
+    };
+  };
   render() {
     return (
       <div className="App">
@@ -35,6 +43,7 @@ class App extends Component {
             value={this.state.lastName}
             onChange={this.eventHandler}
           />
+          <button onClick={this.submitInfo}>Submit</button>
         </div>
       </div>
     );
