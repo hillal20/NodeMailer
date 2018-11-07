@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       studentName: "",
-      lastName: ""
+      lastName: "",
+      message: ""
     };
   }
 
@@ -19,8 +20,17 @@ class App extends Component {
     //alert("helloooooo");
     const obj = {
       name: this.state.studentName,
-      lastName: this.state.lastName
+      lastName: this.state.lastName,
+      message: this.state.message
     };
+    const promise = axios.post("http://localehost:4000/message", obj);
+    promise
+      .then(msg => {
+        console.log("msg==>", msg);
+      })
+      .catch(err => {
+        console.log("err ==> ", err.message);
+      });
   };
   render() {
     return (
@@ -41,6 +51,13 @@ class App extends Component {
             placeholder="enter your last name"
             name="lastName"
             value={this.state.lastName}
+            onChange={this.eventHandler}
+          />
+          <textarea
+            type="text"
+            placeholder="message"
+            name="message"
+            value={this.state.message}
             onChange={this.eventHandler}
           />
           <button onClick={this.submitInfo}>Submit</button>
