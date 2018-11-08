@@ -1,26 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
+
+dotenv.config();
 router.get("/", (req, res) => {
   res.send("msg route is here ");
 });
 router.post("/", (req, res) => {
   console.log(req.body);
   let transporter = nodemailer.createTransport({
-    host: "hilalaissani.com",
+    host: "smtp.ethereal.email",
     port: 587,
-    secure: false,
     auth: {
-      user: "hilalaissani@gmail.com",
-      pass: "123test"
+      user: "urzztnf2hwpi5eg5@ethereal.email",
+      pass: "mEscYeqNqSQE3eEcgh"
     },
     tls: {
       rejectUnauthorized: false
     }
   });
   let mailOptions = {
-    from: " amir dz <hilalaissani@gmail.com> ",
-    to: "hillal20@hotmail.com",
+    from: "hilalaissani@gmail.com",
+    to: "hilalaissani@gmail.com",
+    replyTo: "hilalaisssani@gmail.email",
     subject: "trying nodemailer",
     text: "helloooooo"
   };
@@ -32,7 +35,7 @@ router.post("/", (req, res) => {
       console.log("preview url", nodemailer.getTestMessageUrl(info));
     }
   });
-
-  res.render("<div> Message is sent </div>");
+  console.log(process.env.PASSWORD);
+  res.send("<div> Message is sent </div>");
 });
 module.exports = router;
