@@ -10,27 +10,27 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   console.log(req.body);
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    service: "hotmail",
+    secure: false,
+    port: 25,
     auth: {
-      user: "urzztnf2hwpi5eg5@ethereal.email",
-      pass: "mEscYeqNqSQE3eEcgh"
+      user: "hillal20@hotmail.com",
+      pass: "Rinad200@"
     },
     tls: {
       rejectUnauthorized: false
     }
   });
   let mailOptions = {
-    from: "hilalaissani@gmail.com",
-    to: "hilalaissani@gmail.com",
-    replyTo: "hilalaisssani@gmail.email",
+    from: "hillal20@hotmail.com",
+    to: "hilalaissani@gmail.com", //replyTo: "hilalaisssani@gmail.email",
     subject: "trying nodemailer",
     text: "helloooooo"
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log(err);
+      console.log(err.message);
       console.log("message is emailed", info.messageId);
       console.log("preview url", nodemailer.getTestMessageUrl(info));
     }
