@@ -8,7 +8,11 @@ router.get("/", (req, res) => {
   res.send("msg route is here ");
 });
 router.post("/", (req, res) => {
-  console.log(req.body);
+  const { name, lastName, message } = req.body;
+  if (name === "" || lastName === "" || message === "") {
+    return;
+  }
+
   let transporter = nodemailer.createTransport({
     service: "hotmail",
     secure: false,
@@ -22,20 +26,19 @@ router.post("/", (req, res) => {
     }
   });
   let mailOptions = {
-    from: "hillal20@hotmail.com",
-    to: "hilalaissani@gmail.com", //replyTo: "hilalaisssani@gmail.email",
-    subject: "trying nodemailer",
-    text: "helloooooo"
-  };
+    from: `${req.body.name} ${req.body.lastName}`,
+    to: "hilalaissani@gmail.com",
+    subject: `message  from ${req.body.name} ${req.body.lastName}`,
+    text: req.body.message
+  }; //replyTo: "hilalaisssani@gmail.email",
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
       console.log(err.message);
-      console.log("message is emailed", info.messageId);
-      console.log("preview url", nodemailer.getTestMessageUrl(info));
     }
+    console.log("message is emailed", info);
   });
   console.log(process.env.PASSWORD);
-  res.send("<div> Message is sent </div>");
+  res.send("Message is sent");
 });
 module.exports = router;

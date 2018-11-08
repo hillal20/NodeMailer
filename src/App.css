@@ -8,5 +8,14 @@
   justify-content: center;
   border: 1px solid black;
 }
-.input {
+input {
+  width: 300px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+textarea {
+  width: 300px;
+  height: 150px;
+  margin-top: 20px;
 }
