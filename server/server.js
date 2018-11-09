@@ -11,8 +11,11 @@ server.get("/", (req, res) => {
   res.send("api is running ");
 });
 
-const routerRoute = require("./msgRoute/msgRoute.js");
-server.use("/message", routerRoute);
+const twilioRoute = require("./twilioRoute/twilioRoute.js");
+server.use("/sms", twilioRoute);
+
+const msgRoute = require("./msgRoute/msgRoute.js");
+server.use("/message", msgRoute);
 
 server.listen(port, () => {
   console.log(`==== server is running on port ${port}====`);

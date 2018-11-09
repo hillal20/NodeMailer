@@ -46,6 +46,7 @@ router.post("/", (req, res) => {
   res.send("Message is sent");
 });
 
+//////// sending sms via twilio
 twilio.messages
   .create({
     to: process.env.MY_PHONE_NUMBER,
@@ -53,7 +54,7 @@ twilio.messages
     body: "hoooollalllall"
   })
   .then(msg => {
-    console.log(msg);
+    console.log(msg.sid);
   });
 
 module.exports = router;
