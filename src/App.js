@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-import RSS from "really-smooth-scroll";
+//import RSS from "really-smooth-scroll";
 
 class App extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class App extends Component {
               <button onClick={this.submitInfo}>Submit</button>
             </div>
             {(name === "" || lastName === "" || message === "") && (
-              <div> the fields can not be empty</div>
+              <div> the fields can not be empty ...</div>
             )}
           </div>
         )}

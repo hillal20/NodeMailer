@@ -2,8 +2,12 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
-
 dotenv.config();
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilio = require("twilio")(accountSid, authToken);
+
 router.get("/", (req, res) => {
   res.send("msg route is here ");
 });
@@ -30,7 +34,7 @@ router.post("/", (req, res) => {
     to: "hilalaissani@gmail.com",
     subject: `message  from ${req.body.name} ${req.body.lastName}`,
     text: req.body.message
-  }; //replyTo: "hilalaisssani@gmail.email",
+  };
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
@@ -38,7 +42,18 @@ router.post("/", (req, res) => {
     }
     console.log("message is emailed", info);
   });
-  console.log(process.env.PASSWORD);
+
   res.send("Message is sent");
 });
+
+twilio.messages
+  .create({
+    to: process.env.MY_PHONE_NUMBER,
+    from: "(347) 690-7519",
+    body: "hoooollalllall"
+  })
+  .then(msg => {
+    console.log(msg);
+  });
+
 module.exports = router;
