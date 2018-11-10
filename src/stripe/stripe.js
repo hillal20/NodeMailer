@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StripeProvider, Elements } from "react-stripe-elements";
-import Form from "./form";
+import CheckoutForm from "./CheckoutForm.js";
 class Stripe extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ class Stripe extends Component {
         <div>
           <StripeProvider apiKey="pk_test_dtZeEKgd6FSjpH2sFi8RAYFa">
             <Elements>
-              <Form />
+              <CheckoutForm />
             </Elements>
           </StripeProvider>
         </div>

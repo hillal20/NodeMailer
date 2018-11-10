@@ -8,6 +8,7 @@ dotenv.config();
 
 mongoose.connect(
   process.env.MONGODB_URL_MLAB,
+  { useNewUrlParser: true },
   err => {
     if (err) {
       console.log(err.message);
@@ -23,6 +24,9 @@ server.use(cors());
 server.get("/", (req, res) => {
   res.send("api is running ");
 });
+
+const chargeRoute = require("./chargeRoute/chargeRoute.js");
+server.use("/charge", chargeRoute);
 
 const twilioRoute = require("./twilioRoute/twilioRoute.js");
 server.use("/sms", twilioRoute);
