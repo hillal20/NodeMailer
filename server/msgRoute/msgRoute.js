@@ -4,9 +4,9 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twilio = require("twilio")(accountSid, authToken);
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+// const twilio = require("twilio")(accountSid, authToken);
 
 router.get("/", (req, res) => {
   res.send("msg route is here ");
@@ -47,14 +47,14 @@ router.post("/", (req, res) => {
 });
 
 //////// sending sms via twilio
-twilio.messages
-  .create({
-    to: process.env.MY_PHONE_NUMBER,
-    from: "(347) 690-7519",
-    body: "hoooollalllall"
-  })
-  .then(msg => {
-    console.log(msg.sid);
-  });
+// twilio.messages
+//   .create({
+//     to: process.env.MY_PHONE_NUMBER,
+//     from: "(347) 690-7519",
+//     body: "hoooollalllall"
+//   })
+//   .then(msg => {
+//     console.log(msg.sid);
+//   });
 
 module.exports = router;

@@ -10,15 +10,15 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilio = require("twilio")(accountSid, authToken);
 
 ////////////////////  twilio send messages
-twilio.messages
-  .create({
-    to: process.env.MY_PHONE_NUMBER,
-    from: "(347) 690-7519",
-    body: "hoooollalllall"
-  })
-  .then(msg => {
-    console.log(msg.sid);
-  });
+// twilio.messages
+//   .create({
+//     to: process.env.MY_PHONE_NUMBER,
+//     from: "(347) 690-7519",
+//     body: "hoooollalllall"
+//   })
+//   .then(msg => {
+//     console.log(msg.sid);
+//   });
 ///////////// if we need to send response
 
 router.post("/", (req, res) => {

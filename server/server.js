@@ -2,6 +2,19 @@ const express = require("express");
 const server = express();
 const port = process.env.PORT || 4000;
 const cors = require("cors");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
+
+mongoose.connect(
+  process.env.MONGODB_URL_MLAB,
+  err => {
+    if (err) {
+      console.log(err.message);
+    }
+    console.log(" == DB is connected ==== ");
+  }
+);
 
 const bodyParser = require("body-parser");
 server.use(bodyParser.json());
