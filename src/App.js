@@ -10,7 +10,8 @@ class App extends Component {
       studentName: "",
       lastName: "",
       message: "",
-      received: false
+      received: false,
+      clicked: false
     };
   }
 
@@ -43,10 +44,24 @@ class App extends Component {
       });
     this.setState({ studentName: "", lastName: "", message: "" });
   };
+  model = e => {
+    console.log(e.target.classList);
+    this.setState({ clicked: !this.state.clicked });
+    if (this.state.clicked === true) {
+      e.target.style.background = "blue";
+    } else {
+      e.target.style.background = "yellow";
+    }
+  };
+
   render() {
     const { name, lastName, message } = this.state;
     return (
       <div className="App">
+        <div className="model" onClick={this.model}>
+          model
+        </div>
+        {this.state.clicked && <div className="model2">model2</div>}
         {this.state.received === false && (
           <div>
             <h1> Contact me </h1>
