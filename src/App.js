@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-//import RSS from "really-smooth-scroll";
+import Stripe from "./stripe/stripe";
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +53,9 @@ class App extends Component {
       e.target.style.background = "yellow";
     }
   };
-
+  model2 = e => {
+    //this.setState({ clicked: !this.state.clicked });
+  };
   render() {
     const { name, lastName, message } = this.state;
     return (
@@ -61,7 +63,11 @@ class App extends Component {
         <div className="model" onClick={this.model}>
           model
         </div>
-        {this.state.clicked && <div className="model2">model2</div>}
+        {this.state.clicked && (
+          <div className="model2" onClick={this.model2}>
+            model2
+          </div>
+        )}
         {this.state.received === false && (
           <div>
             <h1> Contact me </h1>
@@ -116,6 +122,9 @@ class App extends Component {
             </button>
           </div>
         )}
+        <div>
+          <Stripe />
+        </div>
       </div>
     );
   }
