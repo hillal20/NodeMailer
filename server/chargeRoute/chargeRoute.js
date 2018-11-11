@@ -8,16 +8,20 @@ router.post("/", (req, res) => {
   stripe.customers
     .create({ email: email, source: token })
     .then(customer => {
-      stripe.charges.create({
-        amount,
-        description: name,
-        currency: "usd",
-        customer: customer.id
-      });
+      stripe.charges
+        .create({
+          amount,
+          description: name,
+          currency: "usd",
+          customer: customer.id
+        })
+        .then(charge => {
+          console.log(charge);
+          res.send(charge.status);
+        })
+        .catch(err => res.send(err));
     })
-    .then(charge => {
-      res.send("successfully");
-    })
+
     .catch(err => res.send(err));
 });
 
